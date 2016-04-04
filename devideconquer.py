@@ -52,6 +52,54 @@ def binary_search(source, wanted, start, end):
 
 
 
+def matrix_pow(matrix, n):
+    """
+    Function Description:
+        This function calculate the nth power of matrix.
+    Parameter Type:
+        n: the power of the matrix
+        matrix: given in the following form
+        [
+            [a11, a12, ..., a1n],
+            [a21, a22, ..., a2n],
+            ...
+            [an1, an2, ..., ann]
+        ]
+    Return Type:
+        Return the result of the power with the same format as
+        matrix.
+    """
+    if n == 1:
+        return matrix
+
+    if n % 2 == 0:
+        temp = matrix_pow(matrix, n / 2)
+        return naive_matrix_multiple(temp, temp)
+    else:
+        temp = matrix_pow(matrix, n / 2)
+        return naive_matrix_multiple(matrix, 
+            naive_matrix_multiple(temp, temp))
+
+
+def la_fibonacci(n):
+    """
+    Function Description:
+        This function calculate the nth Fibonacci number, i.e. f(n)
+        and return it.
+        This function use linear algebra method, i.e.:
+
+                                        n
+        f(n + 1)    f(n)         1   1
+                             =    
+          f(n)    f(n - 1)       1   0
+
+        To calculate the nth power of the 2*2 matrix, we apply
+        devide and conquer method.
+
+    """
+    return matrix_pow([[1, 1], [1, 0]], n)[0][0]
+
+
 
 def naive_fibonacci(n):
     """
@@ -113,7 +161,7 @@ def strassen(a, b):
     """
     n = len(a)
 
-    if n <= 64:
+    if n <= 8:
         return naive_matrix_multiple(a, b)
     else:
         new_size = n / 2
@@ -214,49 +262,3 @@ def naive_matrix_multiple(a, b):
     return result
 
 
-def matrix_pow(matrix, n):
-    """
-    Function Description:
-        This function calculate the nth power of matrix.
-    Parameter Type:
-        n: the power of the matrix
-        matrix: given in the following form
-        [
-            [a11, a12, ..., a1n],
-            [a21, a22, ..., a2n],
-            ...
-            [an1, an2, ..., ann]
-        ]
-    Return Type:
-        Return the result of the power with the same format as
-        matrix.
-    """
-    if n == 1:
-        return matrix
-
-    if n % 2 == 0:
-        temp = matrix_pow(matrix, n / 2)
-        return naive_matrix_multiple(temp, temp)
-    else:
-        temp = matrix_pow(matrix, n / 2)
-        return naive_matrix_multiple(matrix, 
-            naive_matrix_multiple(temp, temp))
-
-
-def la_fibonacci(n):
-    """
-    Function Description:
-        This function calculate the nth Fibonacci number, i.e. f(n)
-        and return it.
-        This function use linear algebra method, i.e.:
-
-                                        n
-        f(n + 1)    f(n)         1   1
-                             =    
-          f(n)    f(n - 1)       1   0
-
-        To calculate the nth power of the 2*2 matrix, we apply
-        devide and conquer method.
-
-    """
-    return matrix_pow([[1, 1], [1, 0]], n)[0][0]
