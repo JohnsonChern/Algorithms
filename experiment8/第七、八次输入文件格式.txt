@@ -1,0 +1,33 @@
+//不同实验的测试数据在不同文件中（该部分为注释部分，真实数据中没有注释）
+
+//最长公共子序列
+5  //标示多少组测试数据（两个序列一组）
+aaaaaaaaabbbbbbbbbbbbbvccccccccccccccccdddddddddddddddd
+aaaaaaaaaaabbbbbbbbbvvvvvvvvvvvvddddddddd
+vvvvvvvvvvssssssssssssswewwwwwwwww
+fgffffffffffsaaaaaaaaaaAAAAAAA
+...
+
+//矩阵链乘积
+100    //矩阵的个数
+12 23 //第一个矩阵的维度
+23 100 //第二个矩阵的维度
+100 56  //第三个矩阵的维度
+...
+
+//最大子段和
+5  //标示多少组测试数据（一个序列一组）
+-1 2 -3 -6 7 8 -4 9 10 13 -17 ...
+...
+
+//Dijkstra算法
+100 //图G中的结点总数，也是邻接矩阵的维度，0表示不相邻，其他值为权值(权值全为正数)
+1 2 3 4 0 6...
+2 3 0 10 12 13 ...
+...
+
+//最小生成树
+100 //图G中的结点总数，也是邻接矩阵的维度，0表示不相邻，其他值为权值
+1 2 3 4 0 6...
+2 3 0 10 12 13 ...
+...

@@ -112,6 +112,34 @@ def max_heapify(source, i, heap_size):
         source[largest] = temp
         max_heapify(source, largest, heap_size)
 
+def min_heapify(source, i, heap_size):
+    """
+    Function Descripiton:
+        max_heapify(source, i, heap_size) descend the position of the
+        element i in a heap with size of heap_size to maintain the max
+        property of the heap.
+    Parameter Type:
+        source:
+            The heap.
+        i:
+            The element whose position we want to descend.
+        heap_size:
+            The size of the heap. The index of elements that bubbles up
+            to replace i should not be less than heap_size.
+    """
+    lc = 2 * i + 1
+    rc = 2 * i + 2
+    if lc < heap_size and source[lc] < source[i]:
+        smallest = lc
+    else:
+        smallest = i
+    if rc < heap_size and source[rc] < source[smallest]:
+        smallest = rc
+    if smallest is not i:
+        temp = source[i]
+        source[i] = source[smallest]
+        source[smallest] = temp
+        min_heapify(source, smallest, heap_size)
 
 def build_max_heap(source):
     """
@@ -128,6 +156,20 @@ def build_max_heap(source):
         # i start from  |_n/2_| - 1  to 0
         max_heapify(source, i, heap_size)
 
+def build_min_heap(source):
+    """
+    Function Descripiton:
+        build_max_heap(source) build the initial max heap by
+        applying max_heapify method from the last node that
+        is not a leaf down to the root of the heap.
+    Parameter Type:
+        source:
+            The heap.
+    """
+    heap_size = len(source)
+    for i in xrange(heap_size/2 - 1, -1, -1):
+        # i start from  |_n/2_| - 1  to 0
+        min_heapify(source, i, heap_size)
 
 #######################   Randomized Quick Sort   #######################
 
